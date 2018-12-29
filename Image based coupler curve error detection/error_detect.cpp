@@ -1,3 +1,8 @@
+/*
+Image processing based curve error detection
+Note: Code is incomplete
+Author: Prabin Rath
+*/
 #include "opencv2/opencv.hpp"
 #include <iostream>
 #include <string>

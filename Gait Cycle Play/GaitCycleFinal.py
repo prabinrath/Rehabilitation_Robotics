@@ -1,7 +1,13 @@
+'''
+PID Controller for gait cycle play
+Author: Prabin Rath
+'''
 import time
 import random
 from roboclaw import Roboclaw
 
+#Change the COM ports with change in system
+#Kp is most effective tem to handle
 rc1 = Roboclaw("COM10",115200)
 rc1.Open()
 rc2 = Roboclaw("COM12",115200)
@@ -12,10 +18,14 @@ Kph = 700;Kih =0.001;Kdh = 120
 Kpk = 900;Kik =0.001;Kdk = 120
 time_step=0.015
 
+#list of reached points for feedback
 hipList=[]
 kneeList=[]
 
 def mapSpeed(spd):
+	'''
+	Don't change the parameters here. They are with reference from User manual and experiments.
+	'''
 	if spd<-30768:
 		spd=-30768
 	elif spd>30767:
@@ -27,6 +37,9 @@ def mapSpeed(spd):
 	return int(spd)
 
 def mapData(pos):
+	'''
+	Don't change the parameters here. They are with reference from User manual and experiments.
+	'''
 	return -int((float(pos)/360)*2000)
 
 #get to the initial position
@@ -43,9 +56,11 @@ en+=rc2.ReadEncM1(address)[1]
 print en
 time.sleep(5)
 
+#set the encoders to zero initially( prevents hard moves due to mechanical errors )
 rc1.SetEncM1(address,0)
 rc2.SetEncM1(address,0)
-	
+
+#PID controller acts on two motors simultaniously
 def takeActionCombined(setPointH,setPointK):
 	flagH=False;flagK=False
 	p_e_h = 0;i_e_h = 0;d_e_h = 0;e_curr_h = 0;e_prev_h = 0;

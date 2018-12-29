@@ -1,3 +1,16 @@
+/*
+Sample code for implementing fuzzy logic controller with 2 inputs
+Design of the knowlwdge base uses some parse guidelines:
+-1st and 2nd lines represent the linguistic variables for 2 inputs
+-3rd line represent the linguistic variables of the output
+-linguistic variables for input or output should be written in a single line with sapce. Name of two variables cannot be same
+	Example: VN NR FR VFR represents 4 linguistic variables for input 1 in the sample knowledge base given
+-4th and 5th lines represent the ranges of the linguistic variables for the 1st and 2nd input
+-6th line represents the ranges of the linguistic variables for the output
+-From 7th line we put the knowlwdge base for the fuzzy
+-Dont put any additional spaces or new lines in the txt files. It will crash the parser
+Author: Prabin Rath
+*/
 #include<iostream>
 #include<fuzzy_controller.h>
 

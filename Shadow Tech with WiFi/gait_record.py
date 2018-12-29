@@ -1,6 +1,11 @@
+'''
+Gait cycle record
+Author: Prabin Rath
+'''
 import socket
 from threading import Thread
 
+#Setup network setup
 HOST = '0.0.0.0'  
 PORT = 44444    
 BUFFER_SIZE = 1024    
@@ -9,6 +14,7 @@ s.bind((HOST, PORT))
 dat=open("debasis.txt", "w")
 flag=False
 
+#Thread function for recording the gait cycle
 def recordControl():
     global flag
     print 'Thread started'
@@ -20,6 +26,7 @@ def recordControl():
         else:
             flag=False
 
+#decoding function
 def getDataArray(encoded):
 	encoded=encoded.decode() #for Python 3.6
 	dat=encoded.split('#')
@@ -36,6 +43,7 @@ def getDataArray(encoded):
 t=Thread(target=recordControl)
 t.start()
 
+#to terminate the loop press CTRL+C
 while True:
     data = s.recvfrom(BUFFER_SIZE)
     if data:

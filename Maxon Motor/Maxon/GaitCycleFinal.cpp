@@ -1,3 +1,8 @@
+/*
+Two motor gait cycle play with maxon motor DCX35L+GPX42+ENX16 EASY and EPOS2 Controller
+Note: Code is incomplete
+Author: Prabin Rath
+*/
 #include <stdio.h>
 #include <iostream>
 #include <string>

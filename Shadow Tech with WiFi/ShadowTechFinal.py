@@ -1,10 +1,15 @@
+'''
+Shadow Technique
+Author: Prabin Rath
+'''
 import time
 import random
 from roboclaw import Roboclaw
 import socket
 import math
 
-pressh =52.85379
+#Inverse kinametics constants
+pressh = 52.85379
 psh = 26.26848
 qsh = 154.1493
 lsh = 170.8741

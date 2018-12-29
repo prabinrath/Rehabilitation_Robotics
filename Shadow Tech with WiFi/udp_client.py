@@ -1,3 +1,7 @@
+'''
+UDP connection test
+Author: Prabin Rath
+'''
 import socket
 HOST = '192.168.43.22'  
 PORT = 44444    
