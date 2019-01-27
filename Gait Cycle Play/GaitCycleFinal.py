@@ -118,4 +118,10 @@ while True:
 		}
 rc1.DutyM1(address,0)
 rc2.DutyM1(address,0)
-print len(hipList),' ',len(kneeList)
+dat.close()
+
+#the text file will be found in the current file directory with the reached points in degrees
+dat=open("record.txt", "w")
+for i in range(len(hipList)):
+	dat.write(str(hipList[i])+','+str(kneeList[i])+',\n')
+dat.close()

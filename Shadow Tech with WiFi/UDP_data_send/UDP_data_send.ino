@@ -1,8 +1,13 @@
+/*
+ WiFi device code for collecting the data from Arduino Nano via serial and sending it to the system via UDP.
+ Change the parameters 
+ Author: Prabin Rath
+*/
 #include "WiFi.h"
 #include "AsyncUDP.h"
 
-const char * ssid = "Prabin";
-const char * password = "remotenetwork";
+const char * ssid = "*****";
+const char * password = "*****";
 
 AsyncUDP udp;
 
@@ -25,7 +30,7 @@ void setup()
     {
       //Serial.println(WiFi.localIP());
     }
-    if(udp.connect(IPAddress(192,168,43,22), 44444)) 
+    if(udp.connect(IPAddress(0,0,0,0), 44444)) 
     {
       //Serial.println("UDP connected");
     }
