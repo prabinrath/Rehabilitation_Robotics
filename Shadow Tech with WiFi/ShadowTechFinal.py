@@ -33,6 +33,9 @@ address = 0x80
 Kph = 400;Kih =0.0001;Kdh = 100
 Kpk = 600;Kik =0.001;Kdk = 10
 
+#for saving reached points. NOTE: size of this file may get too large if operated for long time
+dat=open("record.txt", "w")
+
 #left hip
 def getLeftHip(alphaltipr):
 	#alphaltipr=90
@@ -88,6 +91,7 @@ def mapData(pos):
 	
 def takeActionCombined(setPointH,setPointK):
 	flagH=False;flagK=False
+	hip_point=-1;knee_point=-1;
 	p_e_h = 0;i_e_h = 0;d_e_h = 0;e_curr_h = 0;e_prev_h = 0;
 	p_e_k = 0;i_e_k = 0;d_e_k = 0;e_curr_k = 0;e_prev_k = 0;
 	while True:
@@ -95,6 +99,7 @@ def takeActionCombined(setPointH,setPointK):
 		if cur>setPointH-30 and cur<setPointH+30:
 			if flagH==False:
 				print 'Reached Hip point:',cur,' Target was: ',setPointH
+				hip_point=-((cur*360)/2000);
 				rc1.DutyM1(address,0)
 				flagH=True
 		else:
@@ -112,6 +117,7 @@ def takeActionCombined(setPointH,setPointK):
 		if cur>setPointK-30 and cur<setPointK+30:
 			if flagK==False:
 				print 'Reached Knee point:',cur,' Target was: ',setPointK
+				knee_point=-((cur*360)/2000);
 				rc2.DutyM1(address,0)
 				flagK=True
 		else:
@@ -126,6 +132,7 @@ def takeActionCombined(setPointH,setPointK):
 			rc2.DutyM1(address,mapSpeed(u))
 		print 'PID Running'
 		if flagH==True and flagK==True:
+			dat.write(str(hip_point)+','+str(knee_point)+',\n')
 			break
 
 rc1.SetEncM1(address,mapData(getLeftHip(90)))
